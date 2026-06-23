@@ -1,0 +1,111 @@
+/* Estilos compartidos para páginas internas (experiencia, habilidades, proyeccion) */
+
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --color-header-bg:  #2B2D35;
+  --color-bg:         #F2F3F5;
+  --color-surface:    #FFFFFF;
+  --color-text:       #1C1C1E;
+  --color-muted:      #5A5A6A;
+  --color-accent:     #4A6CF7;
+  --color-border:     #E0E0E8;
+  --font: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --max-width: 700px;
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-header: 0 8px 32px rgba(0, 0, 0, 0.28);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== TOPBAR ===== */
+.topbar {
+  background-color: var(--color-header-bg);
+  box-shadow: var(--shadow-header);
+  padding: 20px 24px;
+}
+
+.topbar-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.back-btn:hover { color: #FFFFFF; }
+
+.back-btn .arrow { font-size: 16px; }
+
+.topbar-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: -0.2px;
+}
+
+/* ===== CONTENT ===== */
+.page-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.page-intro {
+  font-size: 15px;
+  color: var(--color-muted);
+  margin-bottom: 36px;
+  line-height: 1.8;
+}
+
+/* ===== CARD ===== */
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-card);
+}
+
+.card-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.card-sub {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: 10px;
+  letter-spacing: 0.3px;
+}
+
+.card-body {
+  font-size: 15px;
+  color: var(--color-muted);
+  line-height: 1.75;
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luciano Duca — CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Base: variables, layout, sidebar, hamburger -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+
+  <!-- Estilos por sección — cada sección tiene su propio archivo -->
+  <link rel="stylesheet" href="css/sections/inicio.css" />
+  <link rel="stylesheet" href="css/sections/sobre-mi.css" />
+  <link rel="stylesheet" href="css/sections/habilidades.css" />
+  <link rel="stylesheet" href="css/sections/historial.css" />
+  <link rel="stylesheet" href="css/sections/extra.css" />
+</head>
+<body>
+
+  <!-- Overlay del menú móvil -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Botón hamburguesa (solo mobile) -->
+  <button class="hamburger-btn" id="hamburger" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
+
+  <!-- Sidebar fija -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-profile">
+      <div class="avatar-ring" id="sidebar-avatar">
+        <img src="assets/img/foto-cv.png" alt="Luciano Duca"
+          onerror="this.style.display='none'; this.parentElement.classList.add('no-photo')" />
+      </div>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-identity">
+      <p class="sidebar-name">Luciano Duca</p>
+      <p class="sidebar-role">CV Virtual</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-section="inicio">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+          <polyline points="9,22 9,12 15,12 15,22"/>
+        </svg>
+        <span>Inicio</span>
+      </button>
+
+      <button class="nav-item" data-section="sobre-mi">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <span>Sobre mí</span>
+      </button>
+
+      <button class="nav-item" data-section="habilidades">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+        </svg>
+        <span>Habilidades</span>
+      </button>
+
+      <button class="nav-item" data-section="historial">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="4" height="14" rx="1"/>
+          <rect x="9" y="11" width="4" height="10" rx="1"/>
+          <rect x="16" y="4" width="4" height="17" rx="1"/>
+        </svg>
+        <span>Historial laboral</span>
+      </button>
+
+      <button class="nav-item" data-section="extra">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+          <line x1="9" y1="9" x2="9.01" y2="9"/>
+          <line x1="15" y1="9" x2="15.01" y2="9"/>
+        </svg>
+        <span>Información extra</span>
+      </button>
+    </nav>
+
+  </aside>
+
+  <!-- Contenido principal: las secciones se inyectan acá via loader.js -->
+  <main class="main-content" id="mainContent"></main>
+
+  <!-- Overlay del historial — fuera de main para evitar problemas con transform/z-index -->
+  <div class="hist-overlay" id="histOverlay">
+    <div class="hist-overlay-card" id="histOverlayCard">
+
+      <div class="hist-overlay-banner" id="histOverlayBanner">
+        <div class="hist-banner-ph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+          <span>Imágenes del período</span>
+        </div>
+      </div>
+
+      <div class="hist-overlay-content">
+        <div class="hist-overlay-top">
+          <span class="hist-overlay-label" id="histOverlayLabel"></span>
+          <h3 class="hist-overlay-title" id="histOverlayTitle"></h3>
+        </div>
+        <div class="hist-overlay-body" id="histOverlayBody"></div>
+        <button class="hist-close-btn" id="histClose">Cerrar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Hint de scroll para habilidades -->
+  <div class="scroll-hint" id="scroll-hint">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="5" x2="12" y2="19"/>
+      <polyline points="19,12 12,19 5,12"/>
+    </svg>
+    <span>Más información abajo</span>
+  </div>
+
+  <!-- loader.js inyecta las secciones HTML y luego carga js/sections/* + nav.js -->
+  <script src="js/loader.js"></script>
+
+</body>
+</html>

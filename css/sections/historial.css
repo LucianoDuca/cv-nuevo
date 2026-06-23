@@ -1,0 +1,382 @@
+/* ===== HISTORIAL ===== */
+
+#historial {
+  align-items: flex-start;
+  padding: 56px 0 72px;
+  height: auto;
+  overflow: hidden;
+}
+
+.hist-wrap { width: 100%; }
+
+.hist-wrap .inner-header,
+.hist-wrap .hist-intro,
+.hist-wrap .hist-dots {
+  padding-left: 72px;
+  padding-right: 72px;
+}
+
+.hist-intro {
+  font-size: 15px;
+  color: var(--color-muted);
+  line-height: 1.7;
+  margin: 4px 0 40px;
+  max-width: 560px;
+}
+
+/* Stage: contenedor relativo para las flechas absolutas */
+.hist-stage {
+  position: relative;
+  width: 100%;
+}
+
+/* Flechas */
+.hist-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  transition: background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.hist-arrow:hover  { background: #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.16); }
+.hist-arrow:active { transform: translateY(-50%) scale(0.96); }
+.hist-arrow svg    { width: 18px; height: 18px; }
+
+.hist-arrow-l { left: 20px; }
+.hist-arrow-r { right: 20px; }
+
+/* Viewport */
+.hist-viewport {
+  width: 100%;
+  overflow: hidden;
+  height: 380px;
+  user-select: none;
+}
+
+/* Track */
+.hist-track {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 22px;
+  will-change: transform;
+  transition: transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Slide */
+.hist-slide {
+  flex-shrink: 0;
+  width: 260px;
+  height: 310px;
+  cursor: pointer;
+  transition:
+    transform 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity   0.48s ease,
+    filter    0.48s ease;
+}
+
+/* Carta de vidrio */
+.hist-glass {
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.52);
+  backdrop-filter: blur(22px) saturate(190%);
+  -webkit-backdrop-filter: blur(22px) saturate(190%);
+  border: 1px solid rgba(255,255,255,0.78);
+  border-radius: 22px;
+  padding: 28px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.13),
+    0 2px 8px rgba(0,0,0,0.07),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+  transition: box-shadow 0.3s ease;
+}
+
+.hist-glass-accent {
+  background: rgba(0,113,227,0.10);
+  border-color: rgba(0,113,227,0.28);
+  box-shadow:
+    0 8px 32px rgba(0,113,227,0.18),
+    0 2px 8px rgba(0,0,0,0.07),
+    inset 0 1px 0 rgba(255,255,255,0.85);
+}
+
+.hist-glass-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 2px;
+}
+
+.hist-glass-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.3px;
+  line-height: 1.25;
+}
+
+.hist-glass-sub {
+  font-size: 12px;
+  color: var(--color-muted);
+  line-height: 1.4;
+}
+
+.hist-glass-cta {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--color-accent);
+  letter-spacing: 0.3px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.hist-slide.is-center .hist-glass-cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Dots */
+.hist-dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 28px;
+}
+
+.hist-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: rgba(0,0,0,0.15);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.hist-dot.active {
+  background: var(--color-accent);
+  transform: scale(1.35);
+}
+
+/* ===== OVERLAY DE DETALLE ===== */
+.hist-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10,10,18,0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.32s ease;
+}
+
+.hist-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hist-overlay-card {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.85);
+  border-radius: 24px;
+  padding: 0;
+  max-width: 580px;
+  width: calc(100% - 48px);
+  max-height: 88vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-shadow: 0 28px 72px rgba(0,0,0,0.22), 0 4px 16px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.88) translateY(20px);
+  transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hist-overlay.open .hist-overlay-card {
+  transform: scale(1) translateY(0);
+}
+
+.hist-overlay-banner {
+  width: 100%;
+  height: 220px;
+  border-radius: 24px 24px 0 0;
+  background: linear-gradient(145deg, #e8edf5 0%, #d8e0f0 100%);
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hist-banner-ph {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0.28;
+  pointer-events: none;
+  color: var(--color-muted);
+}
+
+.hist-banner-ph svg  { width: 34px; height: 34px; }
+.hist-banner-ph span { font-size: 12px; font-weight: 500; letter-spacing: 0.4px; }
+
+.hist-overlay-banner img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hist-overlay-content {
+  padding: 26px 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.hist-overlay-top {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hist-overlay-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.hist-overlay-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.4px;
+}
+
+.hist-overlay-body {
+  font-size: 14.5px;
+  color: var(--color-muted);
+  line-height: 1.82;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Progresión de carrera */
+.hd-prog {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 14px 16px;
+  background: rgba(0,0,0,0.03);
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+}
+
+.hd-prog span {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--color-text);
+  background: rgba(0,0,0,0.05);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 3px 10px;
+}
+
+.hd-arrow {
+  font-size: 13px;
+  color: var(--color-muted);
+  opacity: 0.45;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.hd-current {
+  background: rgba(0,113,227,0.09) !important;
+  border-color: rgba(0,113,227,0.22) !important;
+  color: var(--color-accent) !important;
+  font-weight: 600 !important;
+}
+
+/* Recomendación */
+.hd-rec {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-size: 13px;
+  font-style: italic;
+  opacity: 0.65;
+}
+
+.hd-rec svg { flex-shrink: 0; margin-top: 2px; opacity: 0.6; }
+
+/* Botón cerrar */
+.hist-close-btn {
+  align-self: flex-start;
+  padding: 10px 26px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: rgba(0,0,0,0.04);
+  font-family: var(--font);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.hist-close-btn:hover  { background: rgba(0,0,0,0.08); transform: translateY(-1px); }
+.hist-close-btn:active { transform: translateY(0); }
+
+@media (max-width: 768px) {
+  #historial { padding-top: 72px; padding-bottom: 80px; }
+  .hist-slide { width: 190px; height: 260px; }
+  .hist-wrap .inner-header,
+  .hist-wrap .hist-intro,
+  .hist-wrap .hist-dots  { padding-left: 24px; padding-right: 24px; }
+  .hist-overlay-content  { padding: 20px 22px 28px; }
+  .hist-overlay-banner   { height: 170px; }
+}
