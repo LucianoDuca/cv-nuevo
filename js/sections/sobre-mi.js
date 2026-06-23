@@ -3,24 +3,22 @@
    Expone window.initSobreMi() y window.stopSobreMi() para que nav.js los invoque. */
 
 // ── Rueda de palabras ──────────────────────────────────────────
-const WHEEL_WORDS   = ['Ambicioso', 'Sociable', 'Líder', 'Proactivo', 'Ordenado'];
 const RADIUS        = 84;
 const SIZE          = 220;
 const CENTER        = SIZE / 2;
 const SPEED         = 0.20;
 const TOP_THRESHOLD = 20;
 
-let _rotation = 0;
+let _rotation  = 0;
 let _wheelRAF  = null;
+let _wheelEls  = [];   // se populan al iniciar, cuando el DOM ya existe
 
 function _stepWheel() {
   _rotation = (_rotation + SPEED) % 360;
+  const n = _wheelEls.length;
 
-  WHEEL_WORDS.forEach((_, i) => {
-    const el = document.getElementById(`wheel-word-${i}`);
-    if (!el) return;
-
-    const angle = ((i * 360 / WHEEL_WORDS.length) + _rotation) % 360;
+  _wheelEls.forEach((el, i) => {
+    const angle = ((i * 360 / n) + _rotation) % 360;
     const rad   = (angle - 90) * Math.PI / 180;
 
     el.style.left = (CENTER + RADIUS * Math.cos(rad)) + 'px';
@@ -70,8 +68,11 @@ window.initSobreMi = function () {
     setTimeout(() => _typeText(el, TYPING_LINE.text, TYPING_LINE.speed), 1250);
   }
 
-  // Rueda
-  if (!_wheelRAF) _stepWheel();
+  // Rueda — lee los elementos del DOM en el momento de iniciar
+  if (!_wheelRAF) {
+    _wheelEls = [...document.querySelectorAll('.wheel-word')];
+    _stepWheel();
+  }
 };
 
 window.stopSobreMi = function () {
