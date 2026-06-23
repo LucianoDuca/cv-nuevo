@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Historial laboral — Luciano Duca</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/sections/historial.css" />
+</head>
+<body>
+
+  <div class="overlay" id="overlay"></div>
+
+  <button class="hamburger-btn" id="hamburger" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-profile">
+      <div class="avatar-ring">
+        <img src="assets/img/foto-cv.png" alt="Luciano Duca"
+          onerror="this.style.display='none'; this.parentElement.classList.add('no-photo')" />
+      </div>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-identity">
+      <p class="sidebar-name">Luciano Duca</p>
+      <p class="sidebar-role">CV Virtual</p>
+    </div>
+    <nav class="sidebar-nav">
+      <a class="nav-item" href="index.html">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        <span>Inicio</span>
+      </a>
+      <a class="nav-item" href="sobre-mi.html">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Sobre mí</span>
+      </a>
+      <a class="nav-item" href="habilidades.html">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        <span>Habilidades</span>
+      </a>
+      <a class="nav-item active" href="historial.html">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="4" height="14" rx="1"/><rect x="9" y="11" width="4" height="10" rx="1"/><rect x="16" y="4" width="4" height="17" rx="1"/></svg>
+        <span>Historial laboral</span>
+      </a>
+      <a class="nav-item" href="extra.html">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        <span>Información extra</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Overlay de detalle — fuera de main para evitar conflictos con z-index -->
+  <div class="hist-overlay" id="histOverlay">
+    <div class="hist-overlay-card" id="histOverlayCard">
+      <div class="hist-overlay-banner" id="histOverlayBanner">
+        <div class="hist-banner-ph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <span>Imágenes del período</span>
+        </div>
+      </div>
+      <div class="hist-overlay-content">
+        <div class="hist-overlay-top">
+          <span class="hist-overlay-label" id="histOverlayLabel"></span>
+          <h3 class="hist-overlay-title" id="histOverlayTitle"></h3>
+        </div>
+        <div class="hist-overlay-body" id="histOverlayBody"></div>
+        <button class="hist-close-btn" id="histClose">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="main-content">
+    <section class="page-section" id="historial">
+      <div class="hist-wrap">
+
+        <div class="inner-header reveal-item" style="--i:0">
+          <h2 class="inner-title">Historial laboral</h2>
+          <div class="inner-line"></div>
+        </div>
+
+        <p class="hist-intro reveal-item" style="--i:1">
+          A lo largo de mi vida siempre intenté ejercer diferentes oficios. Cada etapa me dejó algo, y hoy soy el resultado de todo eso.
+        </p>
+
+        <div class="hist-stage">
+          <div class="hist-viewport" id="histViewport">
+            <div class="hist-track" id="histTrack">
+
+              <!-- CARD 0 -->
+              <div class="hist-slide" data-idx="0">
+                <div class="hist-glass">
+                  <span class="hist-glass-label">Adolescencia</span>
+                  <h3 class="hist-glass-title">Exploración autodidacta</h3>
+                  <p class="hist-glass-sub">Fotografía · Video · Audio</p>
+                  <span class="hist-glass-cta">Ver más</span>
+                </div>
+                <div class="hist-detail" hidden>
+                  <p>Antes de poder ejercer cualquier trabajo formal, la temprana edad me puso un límite que decidí convertir en oportunidad. Empecé a explorar el mundo de la edición de fotos, video y audio de manera completamente autodidacta. Lo que comenzó como un pasatiempo se fue convirtiendo en una herramienta que hoy sigue siendo parte de todo lo que hago.</p>
+                  <div class="hd-rec">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+                    <span>Recomendación — disponible próximamente.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CARD 1 -->
+              <div class="hist-slide" data-idx="1">
+                <div class="hist-glass">
+                  <span class="hist-glass-label">2020 – 2021</span>
+                  <h3 class="hist-glass-title">Fotografía & Contenido</h3>
+                  <p class="hist-glass-sub">Freelance · Community Manager</p>
+                  <span class="hist-glass-cta">Ver más</span>
+                </div>
+                <div class="hist-detail" hidden>
+                  <p>Lo que aprendí de manera autodidacta empezó a tener nombre: trabajo. Colaboré con diversas instituciones educativas como fotógrafo, filmmaker, creador de contenido y community manager. Cada proyecto era diferente, cada institución tenía su identidad, y yo tenía que adaptarme y dar lo mejor. Fue un período que me dio experiencia real, contacto con el mundo profesional y mucha confianza en mis capacidades.</p>
+                  <div class="hd-rec">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+                    <span>Recomendación — disponible próximamente.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CARD 2 (central por defecto) -->
+              <div class="hist-slide" data-idx="2">
+                <div class="hist-glass hist-glass-accent">
+                  <span class="hist-glass-label">2022 – 2024</span>
+                  <h3 class="hist-glass-title">Cafetería Entre 2</h3>
+                  <p class="hist-glass-sub">Mendoza · Sheraton</p>
+                  <span class="hist-glass-cta">Ver más</span>
+                </div>
+                <div class="hist-detail" hidden>
+                  <div class="hd-prog">
+                    <span>Bachero</span><span class="hd-arrow">→</span>
+                    <span>Mozo</span><span class="hd-arrow">→</span>
+                    <span class="hd-current">Gerente · Sucursal Sheraton</span>
+                  </div>
+                  <p>Mi primer trabajo formal llegó en la Cafetería Entre 2. Empecé desde abajo —en la bacha— sin atajos ni privilegios. Con el tiempo y con mucho esfuerzo, pasé a ser mozo. Y con más esfuerzo, más compromiso y más dedicación todavía, llegué a ocupar el puesto de gerente de la sucursal Sheraton Mendoza. Este recorrido me enseñó más sobre liderazgo, responsabilidad y trabajo en equipo que cualquier libro.</p>
+                  <div class="hd-rec">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+                    <span>Recomendación — disponible próximamente.</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CARD 3 -->
+              <div class="hist-slide" data-idx="3">
+                <div class="hist-glass">
+                  <span class="hist-glass-label">2025</span>
+                  <h3 class="hist-glass-title">Próximamente</h3>
+                  <p class="hist-glass-sub">Nueva etapa</p>
+                  <span class="hist-glass-cta">Ver más</span>
+                </div>
+                <div class="hist-detail" hidden>
+                  <p>— Información disponible próximamente.</p>
+                </div>
+              </div>
+
+              <!-- CARD 4 -->
+              <div class="hist-slide" data-idx="4">
+                <div class="hist-glass">
+                  <span class="hist-glass-label">2026</span>
+                  <h3 class="hist-glass-title">Próximamente</h3>
+                  <p class="hist-glass-sub">Nueva etapa</p>
+                  <span class="hist-glass-cta">Ver más</span>
+                </div>
+                <div class="hist-detail" hidden>
+                  <p>— Información disponible próximamente.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <button class="hist-arrow hist-arrow-l" id="histPrev" aria-label="Anterior">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="hist-arrow hist-arrow-r" id="histNext" aria-label="Siguiente">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+
+        <div class="hist-dots" id="histDots"></div>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="js/sidebar.js"></script>
+  <script src="js/sections/historial.js"></script>
+</body>
+</html>

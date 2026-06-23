@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre mí — Luciano Duca</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/sections/sobre-mi.css" />
+</head>
+<body>
+
+  <div class="overlay" id="overlay"></div>
+
+  <button class="hamburger-btn" id="hamburger" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-profile">
+      <div class="avatar-ring">
+        <img src="assets/img/foto-cv.png" alt="Luciano Duca"
+          onerror="this.style.display='none'; this.parentElement.classList.add('no-photo')" />
+      </div>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-identity">
+      <p class="sidebar-name">Luciano Duca</p>
+      <p class="sidebar-role">CV Virtual</p>
+    </div>
+    <nav class="sidebar-nav">
+      <a class="nav-item" href="index.html">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        <span>Inicio</span>
+      </a>
+      <a class="nav-item active" href="sobre-mi.html">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Sobre mí</span>
+      </a>
+      <a class="nav-item" href="habilidades.html">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        <span>Habilidades</span>
+      </a>
+      <a class="nav-item" href="historial.html">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="4" height="14" rx="1"/><rect x="9" y="11" width="4" height="10" rx="1"/><rect x="16" y="4" width="4" height="17" rx="1"/></svg>
+        <span>Historial laboral</span>
+      </a>
+      <a class="nav-item" href="extra.html">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        <span>Información extra</span>
+      </a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <section class="page-section" id="sobre-mi">
+      <div class="sobremi-grid">
+
+        <div class="sobremi-left">
+          <div class="sobremi-header reveal-item" style="--i:0">
+            <h2 class="sobremi-title">Sobre mí</h2>
+            <div class="sobremi-title-line"></div>
+          </div>
+          <p class="sobremi-location reveal-item" style="--i:1">Nací en San Luis y actualmente vivo en Mendoza, Argentina.</p>
+          <p class="sobremi-section-label reveal-item" style="--i:2">Mi forma de ser</p>
+          <p class="sobremi-body reveal-item" style="--i:3">Me considero una persona muy ambiciosa. Me gusta encarar toda clase de desafíos y trato de aprender de cada experiencia que se me presenta día a día.</p>
+          <p class="sobremi-body reveal-item" style="--i:4">Se me da muy fácil establecer relaciones con las personas a mi alrededor. Me gusta ser sociable, siempre trato de dar una buena impresión y me gusta mucho trabajar en equipo.</p>
+          <p class="sobremi-body reveal-item" style="--i:5">Me gusta mucho liderar y cargar con responsabilidades de gran importancia. Considero ser ordenado y responsable, gestiono bien mis horarios y tiempos, y soy proactivo al momento de aclarar cuestiones que se presenten en el trabajo y la comunicación online.</p>
+          <div class="typing-block reveal-item" style="--i:6">
+            <p class="typing-line" id="typing-tech"></p>
+          </div>
+        </div>
+
+        <div class="sobremi-right">
+          <div class="wheel-wrapper reveal-item" style="--i:0">
+            <div class="wheel-container" id="wheel-container">
+              <div class="wheel-dot"></div>
+              <span class="wheel-word" id="wheel-word-0">Ambicioso</span>
+              <span class="wheel-word" id="wheel-word-1">Sociable</span>
+              <span class="wheel-word" id="wheel-word-2">Positivo</span>
+              <span class="wheel-word" id="wheel-word-3">Proactivo</span>
+              <span class="wheel-word" id="wheel-word-4">Ordenado</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="js/sidebar.js"></script>
+  <script src="js/sections/sobre-mi.js"></script>
+</body>
+</html>

@@ -121,6 +121,7 @@ body {
   cursor: pointer;
   text-align: left;
   width: 100%;
+  text-decoration: none;
   transition: background 0.18s, color 0.18s, border-color 0.18s;
 }
 
@@ -157,15 +158,13 @@ body {
 
 /* ===== SECCIONES ===== */
 .page-section {
-  display: none;
+  display: flex;
   min-height: 100vh;
   padding: 0 72px;
   align-items: center;
   position: relative;
   overflow: hidden;
 }
-
-.page-section.active { display: flex; }
 
 .page-section::before {
   content: '';

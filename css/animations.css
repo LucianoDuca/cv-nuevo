@@ -52,12 +52,12 @@
   box-shadow: 0 6px 20px rgba(0,0,0,0.12), 0 0 0 3px rgba(0,113,227,0.16);
 }
 
-/* ===== SECTION CHANGE FADE ===== */
+/* ===== PAGE FADE IN ===== */
 @keyframes sectionFade {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.page-section.active {
+.page-section {
   animation: sectionFade 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
 }

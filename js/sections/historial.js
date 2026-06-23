@@ -1,12 +1,10 @@
-/* Sección: Historial laboral
-   Carrusel infinito de 3 sets con dots, flechas, touch y overlay de detalle.
-   Expone window.initHistCarousel() y window.stopHistCarousel() para nav.js. */
+/* Sección: Historial laboral — carrusel infinito con dots, flechas y overlay */
 
 const CARD_GAP = 22;
 const N        = 5;
 const TRANS_MS = 520;
 
-let current     = N + 2;  // set2, carta 2 (2022–2024) centrada al inicio
+let current     = N + 2;  // carta 2 (2022–2024) centrada al inicio
 let pendingJump = null;
 
 const track       = document.getElementById('histTrack');
@@ -16,10 +14,7 @@ const btnNext     = document.getElementById('histNext');
 const histOverlay = document.getElementById('histOverlay');
 const dotsWrap    = document.getElementById('histDots');
 
-/* ── 3 sets de cartas ──────────────────────────────────────────
-   set1 (pos 0–4):   clones para wrap hacia atrás
-   set2 (pos 5–9):   cartas reales
-   set3 (pos 10–14): clones para wrap hacia adelante           */
+/* ── 3 sets: set1 (clones atrás), set2 (reales), set3 (clones adelante) ── */
 const realSlides = [...document.querySelectorAll('.hist-slide')];
 for (let c = 0; c < 2; c++) {
   realSlides.forEach(s => track.appendChild(s.cloneNode(true)));
@@ -60,9 +55,7 @@ function applySlideStyles() {
   });
 
   const realIdx = ((current % N) + N) % N;
-  [...dotsWrap.children].forEach((d, i) =>
-    d.classList.toggle('active', i === realIdx)
-  );
+  [...dotsWrap.children].forEach((d, i) => d.classList.toggle('active', i === realIdx));
 }
 
 function applyStyles() {
@@ -70,7 +63,6 @@ function applyStyles() {
   applySlideStyles();
 }
 
-/* Salto instantáneo sin animación (cierra el loop de 3 sets) */
 function silentJump(newCurrent) {
   pendingJump = null;
   track.style.transition = 'none';
@@ -95,19 +87,15 @@ function goTo(idx) {
   }
 }
 
-function navTo(realIdx) {
-  goTo(N + realIdx);
-}
+function navTo(realIdx) { goTo(N + realIdx); }
 
 /* ── Flechas ──────────────────────────────────────────────── */
 btnPrev.addEventListener('click', () => goTo(current - 1));
 btnNext.addEventListener('click', () => goTo(current + 1));
 
-/* ── Touch (móvil) ────────────────────────────────────────── */
+/* ── Touch ────────────────────────────────────────────────── */
 let touchStartX = null;
-viewport.addEventListener('touchstart', e => {
-  touchStartX = e.touches[0].clientX;
-}, { passive: true });
+viewport.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
 viewport.addEventListener('touchend', e => {
   if (touchStartX === null) return;
   const delta = touchStartX - e.changedTouches[0].clientX;
@@ -115,7 +103,7 @@ viewport.addEventListener('touchend', e => {
   touchStartX = null;
 }, { passive: true });
 
-/* ── Click en carta: centrar o abrir overlay ──────────────── */
+/* ── Click en carta ───────────────────────────────────────── */
 track.addEventListener('click', e => {
   const slide = e.target.closest('.hist-slide');
   if (!slide) return;
@@ -131,37 +119,22 @@ track.addEventListener('click', e => {
 /* ── Overlay ──────────────────────────────────────────────── */
 function openOverlay(slide) {
   if (pendingJump) { clearTimeout(pendingJump); pendingJump = null; }
-  document.getElementById('histOverlayLabel').textContent =
-    slide.querySelector('.hist-glass-label').textContent;
-  document.getElementById('histOverlayTitle').textContent =
-    slide.querySelector('.hist-glass-title').textContent;
-  document.getElementById('histOverlayBody').innerHTML =
-    slide.querySelector('.hist-detail').innerHTML;
+  document.getElementById('histOverlayLabel').textContent = slide.querySelector('.hist-glass-label').textContent;
+  document.getElementById('histOverlayTitle').textContent = slide.querySelector('.hist-glass-title').textContent;
+  document.getElementById('histOverlayBody').innerHTML   = slide.querySelector('.hist-detail').innerHTML;
   histOverlay.classList.add('open');
 }
 
-function closeOverlay() {
-  histOverlay.classList.remove('open');
-}
+function closeOverlay() { histOverlay.classList.remove('open'); }
 
 document.getElementById('histClose').addEventListener('click', closeOverlay);
-histOverlay.addEventListener('click', e => {
-  if (e.target === histOverlay) closeOverlay();
-});
+histOverlay.addEventListener('click', e => { if (e.target === histOverlay) closeOverlay(); });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && histOverlay.classList.contains('open')) closeOverlay();
 });
 
 /* ── Resize ───────────────────────────────────────────────── */
-window.addEventListener('resize', () => {
-  if (document.getElementById('historial').classList.contains('active')) {
-    silentJump(current);
-  }
-});
+window.addEventListener('resize', () => silentJump(current));
 
-/* ── API pública ──────────────────────────────────────────── */
-window.initHistCarousel = function () {
-  silentJump(current);
-};
-
-window.stopHistCarousel = function () {};
+/* ── Init ─────────────────────────────────────────────────── */
+requestAnimationFrame(() => silentJump(current));
